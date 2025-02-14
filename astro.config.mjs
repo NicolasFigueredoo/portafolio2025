@@ -22,5 +22,7 @@ export default defineConfig({
   server: {
     host: true,
     port: 4321,
+    toolbar: false  // Desactiva la barra de herramientas de desarrollo
+
   }
 });
