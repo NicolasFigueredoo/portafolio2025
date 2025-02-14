@@ -11,18 +11,15 @@ export default defineConfig({
     resolve: {
       alias: {
         '@': '/src',
-        '@components': '/src/components'
-      }
-    }
+        '@components': '/src/components',
+      },
+    },
   },
   output: 'static',
-  build: {
-    inlineStylesheets: 'auto'
-  },
+  site: 'https://github.com/NicolasFigueredoo/portafolio2025',  // Defínelo aquí, no dentro de `build`
   server: {
     host: true,
     port: 4321,
-    toolbar: false  // Desactiva la barra de herramientas de desarrollo
-
-  }
+    toolbar: false, // Desactiva la barra de herramientas de desarrollo
+  },
 });
