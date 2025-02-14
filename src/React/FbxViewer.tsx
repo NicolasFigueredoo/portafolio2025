@@ -5,6 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const FbxViewer = () => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const modelRef = useRef<THREE.Object3D | null>(null); // Referencia al modelo
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -31,6 +32,7 @@ const FbxViewer = () => {
     const loader = new FBXLoader();
     loader.load("/public/Case.fbx", (object) => {
       object.scale.set(0.01, 0.01, 0.01); // Ajusta el tamaño
+      modelRef.current = object; // Guardamos referencia al modelo
       scene.add(object);
     });
 
@@ -45,6 +47,12 @@ const FbxViewer = () => {
     // Animación
     const animate = () => {
       requestAnimationFrame(animate);
+
+      // Rotación automática del modelo
+      if (modelRef.current) {
+        modelRef.current.rotation.y += 0.005; // Ajusta la velocidad de rotación
+      }
+
       controls.update();
       renderer.render(scene, camera);
     };
